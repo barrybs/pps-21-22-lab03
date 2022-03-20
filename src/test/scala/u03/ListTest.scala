@@ -9,6 +9,7 @@ class ListTest:
 
   val l: List[Int] = Cons(10, Cons(20, Cons(30, Nil())))
   val lNil: List[Int] = Nil()
+  val lst: List[Int] = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
 
   @Test def testSum() : Unit =
     assertEquals(0, sum(Nil()))
@@ -45,3 +46,15 @@ class ListTest:
     assertEquals(Cons(20, Cons(30, Nil())), filterViaFlatMap(l)(_ >= 20))
     assertEquals(Cons(10, Cons(30, Nil())), filterViaFlatMap(l)(_ != 20))
 
+  @Test def testMax() : Unit =
+    assertEquals(Some(25), maximum(Cons(10, Cons(25, Cons(20, Nil())))) )
+    assertEquals(Some(-30), maximum(Cons(-100, Cons(-30, Cons(-200, Nil())))) )
+    assertEquals(Some(Int.MinValue), maximum(Nil()) )
+
+  @Test def selectCourseOfTeachers() : Unit = ???
+
+  @Test def testFoldLeft () : Unit =
+    assertEquals(-16,foldLeft(lst)(0)(_ - _))
+
+  @Test def testFoldRight (): Unit =
+    assertEquals(-8,foldRight(lst)(0)(_ - _))
