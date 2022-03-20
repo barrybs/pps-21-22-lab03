@@ -33,17 +33,9 @@ object ListsExercises2 extends App{
     def append[A] (l: List[A], tail: List[A]): List[A] = l match
       case Cons(h, t) => Cons(h, append (t, tail))
       case Nil() => tail
-    /*
-        def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = l match
-          def mapper
-          case Cons(h, t) => Cons(, f(flatMap(t)))
-          case Nil() => Nil()
 
 
-          case Cons(h, t) => Cons()
-          case _ => Nil()
-    */
-
+    //Book excercises ("Functional programming with Scala")
     def tail[A](l: List[A]): List[A] = l match
       case Cons (_,t) => t
       case Nil() => Nil()
@@ -73,10 +65,10 @@ object ListsExercises2 extends App{
         case Nil() => z
         case Cons(h, t) => f(h, foldRight(t,z)(f))
 
-    def sum2(l: List[Int]) =
+    def sum2(l: List[Int]) :Int=
       foldRight(l, 0)((x,y) => x + y)
 
-    def product2(l: List[Double]) =
+    def product2(l: List[Double]) :Double=
       foldRight(l, 1.0)(_ * _)
 
     def length[A](l: List[A]): Int = l match
@@ -97,11 +89,11 @@ object ListsExercises2 extends App{
       foldLeft(l, 0)((acc,_) => acc+1)
 
     //Ex 3.12
-    def sumFL(l: List[Int]) =
+    def sumFL(l: List[Int]) : Int =
       foldLeft(l, 0)(_ + _)
 
     //Ex 3.12
-    def productFL(l: List[Double]) =
+    def productFL(l: List[Double]) : Double =
       foldLeft(l, 1.0)(_ * _)
 
     def reverse[A](l: List[A]) : List[A] = ???

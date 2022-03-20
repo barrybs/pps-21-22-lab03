@@ -37,7 +37,23 @@ object Streams extends App:
     def iterate[A](init: => A)(next: A => A): Stream[A] =
       cons(init, iterate(next(init))(next))
 
-  // TODO: def drop(....)
+    //Ex 5
+    @annotation.tailrec
+    def drop[A](stream : Stream[A]) (n: Int): Stream[A] = (stream, n) match
+      case (Cons(head,tail), n) if n == 0 => stream
+      case (Cons(head,tail), n) => drop(tail())(n - 1)
+      case _ => Empty()
+
+    //Ex 6
+    def constant[A](x: => A): Stream[A] =
+      cons(x, constant(x))
+
+    //Ex 7
+    def fibs : Stream[Int] =
+      def _fibs(p: => Int, a: => Int): Stream[Int] =
+        cons(p, _fibs(a, a+p))
+      _fibs(0, 1)
+
   end Stream
 
   // var simplifies chaining of functions a bit..
