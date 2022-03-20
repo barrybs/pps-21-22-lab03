@@ -1,15 +1,19 @@
 package u03
 
-import org.junit.*
-import org.junit.Assert.*
-import Lists.*
+import org.junit._
+import org.junit.Assert._
+import Lists._
 
 class ListTest:
-  import List.*
+  import List._
+  import Person._
 
   val l: List[Int] = Cons(10, Cons(20, Cons(30, Nil())))
   val lNil: List[Int] = Nil()
   val lst: List[Int] = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
+  val persons: List[Person] = Cons (Person.Student("Barry Bassi", 2020),
+                              Cons(Person.Teacher("Mirko Viroli", "PPS"),
+                              Cons(Person.Teacher("Alessandro Ricci", "PCD"), Nil())))
 
   @Test def testSum() : Unit =
     assertEquals(0, sum(Nil()))
@@ -51,7 +55,8 @@ class ListTest:
     assertEquals(Some(-30), maximum(Cons(-100, Cons(-30, Cons(-200, Nil())))) )
     assertEquals(Some(Int.MinValue), maximum(Nil()) )
 
-  @Test def selectCourseOfTeachers() : Unit = ???
+  @Test def testSelectCourseOfTeachers() : Unit =
+    assertEquals(Cons("PPS", Cons("PCD", Nil())), selectCoursesOfTeachers(persons)) 
 
   @Test def testFoldLeft () : Unit =
     assertEquals(-16,foldLeft(lst)(0)(_ - _))
